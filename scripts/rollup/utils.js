@@ -7,14 +7,14 @@ import cjs from '@rollup/plugin-commonjs';
 const packagePath = path.resolve(__dirname, '../../packages');
 const distPath = path.resolve(__dirname, '../../dist/node_modules');
 
-export function resolvePackagePath(packageName: string, isDist = false) {
+export function resolvePackagePath(packageName, isDist = false) {
 	if (isDist) return `${distPath}/${packageName}`;
 	return `${packagePath}/${packageName}`;
 }
 
-export function getPackageJson(packageName: string) {
-	const packageJsonPath = resolvePackagePath(packageName) + '/package.json';
-	const str = fs.readFileSync(packageJsonPath, 'utf-8');
+export function getPackageJson(packageName) {
+	const path = `${resolvePackagePath(packageName)}/package.json`;
+	const str = fs.readFileSync(path, { encoding: 'utf-8' });
 	return JSON.parse(str);
 }
 

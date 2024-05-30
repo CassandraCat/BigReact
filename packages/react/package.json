@@ -1,6 +1,7 @@
 {
 	"name": "react",
 	"version": "1.0.0",
+	"module": "index.ts",
 	"description": "React Common Methods",
 	"keywords": [
 		"react"

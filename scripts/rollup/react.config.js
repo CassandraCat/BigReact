@@ -5,7 +5,7 @@ import {
 } from './utils';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 
-const { name, module } = getPackageJson('react');
+const { name, main } = getPackageJson('react');
 
 const packagePath = resolvePackagePath(name);
 
@@ -14,7 +14,7 @@ const packageDistPath = resolvePackagePath(name, true);
 export default [
 	// react
 	{
-		input: `${packagePath}/${module}`,
+		input: `${packagePath}/${main}`,
 		output: {
 			file: `${packageDistPath}/index.js`,
 			name: 'index.js',
