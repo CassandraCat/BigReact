@@ -1,0 +1,36 @@
+{
+	"name": "react",
+	"version": "1.0.0",
+	"description": "React Common Methods",
+	"keywords": [
+		"react"
+	],
+	"author": "CrazyCatZhang <crazycatzhang@outlook.com>",
+	"homepage": "https://github.com/CrazyCatZhang/BigReact#readme",
+	"license": "ISC",
+	"main": "lib/react.ts",
+	"directories": {
+		"lib": "lib",
+		"test": "__tests__"
+	},
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CrazyCatZhang/BigReact.git"
+	},
+	"scripts": {
+		"test": "node ./__tests__/react.test.js",
+		"lint": "scripty"
+	},
+	"scripty": {
+		"path": "../../scripts/packages"
+	},
+	"bugs": {
+		"url": "https://github.com/CrazyCatZhang/BigReact/issues"
+	},
+	"dependencies": {
+		"shared": "^1.0.0"
+	}
+}

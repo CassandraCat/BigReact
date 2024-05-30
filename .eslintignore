@@ -4,3 +4,4 @@ build
 packages/*/node_modules
 packages/*/dist
 packages/*/build
+packages/*/__tests__
