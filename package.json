@@ -49,6 +49,7 @@
     "lerna-changelog": "^2.2.0",
     "prettier": "^2.4.0",
     "rimraf": "^5.0.7",
+    "rollup": "^4.18.0",
     "scripty": "^2.1.1",
     "typescript": "^5.4.5"
   }
