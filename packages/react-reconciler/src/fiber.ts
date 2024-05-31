@@ -17,6 +17,7 @@ export class FiberNode {
 	index: number;
 
 	memorizedProps: Props | null;
+	memorizedState: any;
 	alternate: FiberNode | null;
 	flags: Flags;
 
