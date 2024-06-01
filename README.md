@@ -66,6 +66,4 @@ Insert single node render phase mount process, including the following features:
 - Fiber architecture
 - Single node reconcile process
 
-!!! Note
-
-      Rendering in the browser environment has not yet been implemented.
+> Note: Rendering in the browser environment has not yet been implemented.
