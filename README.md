@@ -16,7 +16,7 @@ With the following characteristics:
 
 | Type         | Content                                           | Completion Status             | Remarks |
 | ------------ | ------------------------------------------------- | ----------------------------- | ------- |
-| Architecture | monorepo (implemented with pnpm)                  | <div align="center">✅</div>  |         |
+| Architecture | monorepo (implemented with yarn+lerna)            | <div align="center">✅</div>  |         |
 | Standards    | eslint                                            | <div align="center">✅</div>  |         |
 | Standards    | prettier                                          | <div align="center">✅</div>  |         |
 | Standards    | commitlint + husky                                | <div align="center">✅</div>  |         |
