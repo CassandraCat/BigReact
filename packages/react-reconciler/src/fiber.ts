@@ -20,6 +20,7 @@ export class FiberNode {
 	memorizedState: any;
 	alternate: FiberNode | null;
 	flags: Flags;
+	subtreeFlags: Flags;
 	updateQueue: unknown;
 
 	constructor(tag: WorkTag, key: Key, pendingProps: Props) {
@@ -41,6 +42,7 @@ export class FiberNode {
 
 		this.alternate = null;
 		this.flags = NoFlags;
+		this.subtreeFlags = NoFlags;
 	}
 }
 
@@ -73,6 +75,7 @@ export const createWorkInProgress = (
 		// Update
 		wip.pendingProps = pendingProps;
 		wip.flags = NoFlags;
+		wip.subtreeFlags = NoFlags;
 	}
 
 	wip.type = current.type;
