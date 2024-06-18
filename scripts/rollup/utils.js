@@ -21,7 +21,8 @@ export function getPackageJson(packageName) {
 
 export function getBaseRollupPlugins({
 	alias = {
-		__DEV__: 'process.env.NODE_ENV !== "production"'
+		__DEV__: 'process.env.NODE_ENV !== "production"',
+		preventAssignment: true
 	},
 	typescript = {}
 } = {}) {

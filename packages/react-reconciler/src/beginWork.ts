@@ -9,9 +9,9 @@ export const beginWork = (wip: FiberNode) => {
 		case HostRoot:
 			return updateHostRoot(wip);
 		case HostComponent:
-			return null;
-		case HostText:
 			return updateHostComponent(wip);
+		case HostText:
+			return null;
 		default:
 			if (__DEV__) {
 				console.warn('Unknown fiber tag');
@@ -37,7 +37,8 @@ function updateHostRoot(wip: FiberNode): FiberNode | null {
 function updateHostComponent(wip: FiberNode) {
 	const nextProps = wip.pendingProps;
 	const nextChildren = nextProps.children;
-	reconcileChildFibers(wip, nextChildren);
+	console.log(nextChildren);
+	reconcileChildren(wip, nextChildren);
 	return wip.child;
 }
 

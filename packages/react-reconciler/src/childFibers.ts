@@ -9,9 +9,9 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		currentFiber: FiberNode | null,
 		element: ReactElementType
 	) {
+		currentFiber;
 		const fiber = createFiberFromELement(element);
 		fiber.return = returnFiber;
-		console.log(fiber, currentFiber);
 		return fiber;
 	}
 

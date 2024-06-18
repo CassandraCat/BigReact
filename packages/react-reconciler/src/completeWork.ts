@@ -1,10 +1,11 @@
+import { Container } from 'hostConfig';
 import { FiberNode } from './fiber';
 import { NoFlags } from './fiberFlags';
 import {
 	appendInitialChild,
 	createInstance,
 	createTextInstance
-} from './hostConfig';
+} from 'hostConfig';
 import { HostComponent, HostRoot, HostText } from './workTags';
 
 export const completeWork = (wip: FiberNode) => {
@@ -19,8 +20,9 @@ export const completeWork = (wip: FiberNode) => {
 				if (!newProps) {
 					throw new Error('No props');
 				}
-				const instance = (wip.stateNode = createInstance(wip.type, newProps));
+				const instance = createInstance(wip.type);
 				appendAllChildren(instance, wip);
+				wip.stateNode = instance;
 			}
 			bubbleProperties(wip);
 			return null;
@@ -47,7 +49,7 @@ export const completeWork = (wip: FiberNode) => {
 	return wip;
 };
 
-function appendAllChildren(parent: FiberNode, wip: FiberNode) {
+function appendAllChildren(parent: Container, wip: FiberNode) {
 	let node = wip.child;
 	while (node !== null) {
 		if (node.tag === HostComponent || node.tag === HostText) {

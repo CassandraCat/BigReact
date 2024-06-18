@@ -1,0 +1,38 @@
+{
+	"name": "react-dom",
+	"version": "1.0.0",
+	"module": "index.ts",
+	"description": "render react components to browser's dom",
+	"author": "CrazyCatZhang <crazycatzhang@outlook.com>",
+	"homepage": "https://github.com/CrazyCatZhang/BigReact#readme",
+	"license": "ISC",
+	"main": "lib/react-dom.ts",
+	"directories": {
+		"lib": "lib",
+		"test": "__tests__"
+	},
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CrazyCatZhang/BigReact.git"
+	},
+	"scripts": {
+		"test": "node ./__tests__/react-dom.test.js",
+		"lint": "scripty"
+	},
+	"scripty": {
+		"path": "../../scripts/packages"
+	},
+	"bugs": {
+		"url": "https://github.com/CrazyCatZhang/BigReact/issues"
+	},
+	"dependencies": {
+		"shared": "^1.0.0",
+		"react-reconciler": "^1.0.0"
+	},
+	"peerDependencies": {
+		"react": "^1.0.0"
+	}
+}
