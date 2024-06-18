@@ -14,38 +14,45 @@ With the following characteristics:
 
 ### Engineering Requirements
 
-| Type         | Content                                           | Completion Status             | Remarks |
-| ------------ | ------------------------------------------------- | ----------------------------- | ------- |
-| Architecture | monorepo (implemented with yarn+lerna)            | <div align="center">✅</div>  |         |
-| Standards    | eslint                                            | <div align="center">✅</div>  |         |
-| Standards    | prettier                                          | <div align="center">✅</div>  |         |
-| Standards    | commitlint + husky                                | <div align="center">✅</div>  |         |
-| Standards    | lint-staged                                       | <div align="center">✅</div>  |         |
-| Standards    | tsc                                               | <div align="center">✅</div>  |         |
-| Testing      | Setting up jest environment                       | <div align="center">⬜️</div> |         |
-| Build        | babel configuration                               | <div align="center">⬜️</div> |         |
-| Build        | Dev environment package build                     | <div align="center">✅</div>  |         |
-| Build        | Prod environment package build                    | <div align="center">⬜️</div> |         |
-| Deployment   | Github Action for lint and test                   | <div align="center">⬜️</div> |         |
-| Deployment   | Github Action to publish npm package based on tag | <div align="center">⬜️</div> |         |
+| Type         | Content                                           | Status |                   Implemented in Version                    |
+| ------------ | ------------------------------------------------- | :----: | :---------------------------------------------------------: |
+| Architecture | monorepo (implemented with pnpm)                  |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Standards    | eslint                                            |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Standards    | prettier                                          |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Standards    | commitlint + husky                                |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Standards    | lint-staged                                       |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Standards    | tsc (TypeScript compiler)                         |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Testing      | jest environment setup                            |  ⬜️   |                                                             |
+| Build        | babel configuration                               |  ⬜️   |                                                             |
+| Build        | Development bundle build                          |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Build        | Production bundle build                           |  ⬜️   |                                                             |
+| Deployment   | Github Action for lint and test                   |  ⬜️   |                                                             |
+| Deployment   | Github Action to publish npm package based on tag |  ⬜️   |                                                             |
 
 ### Framework Requirements
 
-| Type       | Content                                                   | Completion Status             | Remarks |
-| ---------- | --------------------------------------------------------- | ----------------------------- | ------- |
-| React      | JSX conversion                                            | <div align="center">✅</div>  |         |
-| ReactDOM   | DOM operations (add/delete/update) in browser environment | <div align="center">⬜️</div> |         |
-| ReactNoop  | ReactNoop Renderer                                        | <div align="center">⬜️</div> |         |
-| Reconciler | Fiber architecture                                        | <div align="center">✅</div>  |         |
-| Reconciler | Event model                                               | <div align="center">⬜️</div> |         |
-| Reconciler | Lane model                                                | <div align="center">⬜️</div> |         |
-| Reconciler | Basic update mechanism                                    | <div align="center">✅</div>  |         |
-| Reconciler | Priority-based update mechanism                           | <div align="center">⬜️</div> |         |
-| Reconciler | Single node reconcile process                             | <div align="center">✅</div>  |         |
-| Reconciler | Multiple node reconcile process                           | <div align="center">⬜️</div> |         |
-| Reconciler | Node deletion reconcile process                           | <div align="center">⬜️</div> |         |
-| Reconciler | Synchronous scheduling process                            | <div align="center">⬜️</div> |         |
-| Reconciler | Asynchronous scheduling process                           | <div align="center">⬜️</div> |         |
+| Type       | Content                                | Status |                   Implemented in Version                    |
+| ---------- | -------------------------------------- | :----: | :---------------------------------------------------------: |
+| React      | JSX transformation                     |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| ReactDOM   | Insertion of browser DOM elements      |   ✅   | [v1.1](https://github.com/CrazyCatZhang/BigReact/tree/v1.1) |
+| ReactDOM   | Movement of browser DOM elements       |  ⬜️   |                                                             |
+| ReactDOM   | Attribute changes in browser DOM       |  ⬜️   |                                                             |
+| ReactDOM   | Deletion of browser DOM elements       |  ⬜️   |                                                             |
+| ReactNoop  | ReactNoop Renderer                     |  ⬜️   |                                                             |
+| Reconciler | Fiber architecture                     |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Reconciler | Event model                            |  ⬜️   |                                                             |
+| Reconciler | Lane model                             |  ⬜️   |                                                             |
+| Reconciler | Basic update mechanism                 |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Reconciler | Priority-based update mechanism        |  ⬜️   |                                                             |
+| Reconciler | Single node insertion reconcile flow   |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Reconciler | Multiple node insertion reconcile flow |  ⬜️   |                                                             |
+| Reconciler | Node deletion reconcile flow           |  ⬜️   |                                                             |
+| Reconciler | HostText type support                  |   ✅   | [v1.1](https://github.com/CrazyCatZhang/BigReact/tree/v1.1) |
+| Reconciler | HostComponent type support             |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Reconciler | HostRoot type support                  |   ✅   | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
+| Reconciler | FunctionComponent type support         |  ⬜️   |                                                             |
+| Reconciler | Synchronous scheduling flow            |  ⬜️   |                                                             |
+| Reconciler | Asynchronous scheduling flow           |  ⬜️   |                                                             |
 
 ## Debugging
 
@@ -70,3 +77,10 @@ Insert single node render phase mount process, including the following features:
 - Single node reconcile process
 
 > Note: Rendering in the browser environment has not yet been implemented.
+
+### v1.1
+
+Mounting process for inserting a single node (rendering DOM in a browser environment), including the following functionalities:
+
+- Browser environment DOM insertion
+- Support for HostText type
