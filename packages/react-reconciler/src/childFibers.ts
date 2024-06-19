@@ -20,9 +20,9 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		currentFiber: FiberNode | null,
 		content: string | number
 	) {
+		currentFiber;
 		const fiber = new FiberNode(HostText, null, { content });
 		fiber.return = returnFiber;
-		console.log(fiber, currentFiber);
 		return fiber;
 	}
 
