@@ -6,7 +6,7 @@ import {
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import alias from '@rollup/plugin-alias';
 
-const { name, main } = getPackageJson('react-dom');
+const { name, main, peerDependencies } = getPackageJson('react-dom');
 
 const packagePath = resolvePackagePath(name);
 
@@ -28,6 +28,7 @@ export default [
 				format: 'umd'
 			}
 		],
+		external: [...Object.keys(peerDependencies)],
 		plugins: [
 			...getBaseRollupPlugins(),
 			// webpack resolve alias
