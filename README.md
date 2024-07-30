@@ -14,50 +14,52 @@ With the following characteristics:
 
 ### Engineering Requirements
 
-| Type       | Content                          | Completion |                     Version Implemented                     |
-| ---------- | -------------------------------- | :--------: | :---------------------------------------------------------: |
-| Structure  | monorepo (implemented with pnpm) |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Standard   | eslint                           |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Standard   | prettier                         |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Standard   | commitlint + husky               |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Standard   | lint-staged                      |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Standard   | tsc                              |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Testing    | jest environment setup           |    ⬜️     |                                                             |
-| Build      | babel configuration              |    ⬜️     |                                                             |
-| Build      | Dev environment package build    |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Build      | Prod environment package build   |    ⬜️     |                                                             |
-| Deployment | Github Action for lint and test  |    ⬜️     |                                                             |
-| Deployment | Github Action for npm release    |    ⬜️     |                                                             |
+| Type       | Content                          | Completion |                    Version Implemented                     |
+| ---------- | -------------------------------- | :--------: | :--------------------------------------------------------: |
+| Structure  | monorepo (implemented with pnpm) |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Standard   | eslint                           |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Standard   | prettier                         |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Standard   | commitlint + husky               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Standard   | lint-staged                      |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Standard   | tsc                              |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Testing    | jest environment setup           |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
+| Build      | babel configuration              |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
+| Build      | Dev environment package build    |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Build      | Prod environment package build   |    ⬜️     |                                                            |
+| Deployment | Github Action for lint and test  |    ⬜️     |                                                            |
+| Deployment | Github Action for npm release    |    ⬜️     |                                                            |
 
 ### Framework Requirements
 
-| Type       | Content                          | Completion |                     Version Implemented                     |
-| ---------- | -------------------------------- | :--------: | :---------------------------------------------------------: |
-| React      | JSX transformation               |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| ReactDOM   | DOM insertion in browser         |     ✅     | [v1.1](https://github.com/CrazyCatZhang/BigReact/tree/v1.1) |
-| ReactDOM   | DOM movement in browser          |    ⬜️     |                                                             |
-| ReactDOM   | DOM attribute changes in browser |    ⬜️     |                                                             |
-| ReactDOM   | DOM deletion in browser          |    ⬜️     |                                                             |
-| ReactNoop  | ReactNoop Renderer               |    ⬜️     |                                                             |
-| Reconciler | Fiber architecture               |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Reconciler | Event model                      |    ⬜️     |                                                             |
-| Reconciler | Lane model                       |    ⬜️     |                                                             |
-| Reconciler | Basic update mechanism           |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Reconciler | Priority-based update mechanism  |    ⬜️     |                                                             |
-| Reconciler | Single-node reconcile process    |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Reconciler | Multi-node reconcile process     |    ⬜️     |                                                             |
-| Reconciler | Node deletion reconcile process  |    ⬜️     |                                                             |
-| Reconciler | Support for HostText type        |     ✅     | [v1.1](https://github.com/CrazyCatZhang/BigReact/tree/v1.1) |
-| Reconciler | Support for HostComponent type   |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Reconciler | Support for HostRoot type        |     ✅     | [v1.0](https://github.com/CrazyCatZhang/BigReact/tree/v1.0) |
-| Reconciler | Support for FunctionComponent    |     ✅     | [v1.2](https://github.com/CrazyCatZhang/BigReact/tree/v1.2) |
-| React      | Hooks architecture (mount)       |     ✅     | [v1.2](https://github.com/CrazyCatZhang/BigReact/tree/v1.2) |
-| React      | Hooks architecture (update)      |    ⬜️     |                                                             |
-| Reconciler | useState implementation          |     ✅     | [v1.2](https://github.com/CrazyCatZhang/BigReact/tree/v1.2) |
-| Reconciler | useEffect implementation         |    ⬜️     |                                                             |
-| Reconciler | useRef implementation            |    ⬜️     |                                                             |
-| Reconciler | Synchronous scheduling process   |    ⬜️     |                                                             |
-| Reconciler | Asynchronous scheduling process  |    ⬜️     |                                                             |
+| Type       | Content                          | Completion |                    Version Implemented                     |
+| ---------- | -------------------------------- | :--------: | :--------------------------------------------------------: |
+| React      | JSX transformation               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| React      | React.isValidElement             |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| ReactDOM   | DOM insertion in browser         |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| ReactDOM   | DOM movement in browser          |    ⬜️     |                                                            |
+| ReactDOM   | DOM attribute changes in browser |    ⬜️     |                                                            |
+| ReactDOM   | DOM deletion in browser          |    ⬜️     |                                                            |
+| ReactDOM   | ReactTestUtils                   |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
+| ReactNoop  | ReactNoop Renderer               |    ⬜️     |                                                            |
+| Reconciler | Fiber architecture               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Event model                      |    ⬜️     |                                                            |
+| Reconciler | Lane model                       |    ⬜️     |                                                            |
+| Reconciler | Basic update mechanism           |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Priority-based update mechanism  |    ⬜️     |                                                            |
+| Reconciler | Single-node reconcile process    |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Multi-node reconcile process     |    ⬜️     |                                                            |
+| Reconciler | Node deletion reconcile process  |    ⬜️     |                                                            |
+| Reconciler | Support for HostText type        |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| Reconciler | Support for HostComponent type   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for HostRoot type        |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for FunctionComponent    |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| React      | Hooks architecture (mount)       |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| React      | Hooks architecture (update)      |    ⬜️     |                                                            |
+| Reconciler | useState implementation          |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| Reconciler | useEffect implementation         |    ⬜️     |                                                            |
+| Reconciler | useRef implementation            |    ⬜️     |                                                            |
+| Reconciler | Synchronous scheduling process   |    ⬜️     |                                                            |
+| Reconciler | Asynchronous scheduling process  |    ⬜️     |                                                            |
 
 ## Debugging
 
@@ -97,3 +99,12 @@ Implement the mount process for useState, including the following functionalitie
 - Support for FunctionComponent type
 - Mount process implementation following the Hooks architecture
 - Implementation of useState
+
+### v1.3
+
+Initialize the testing architecture with the following features:
+
+- Set up the Jest environment
+- Configure Babel
+- Use ReactTestUtils
+- Run the 20 official test cases related to ReactElement
