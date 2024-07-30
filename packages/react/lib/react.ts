@@ -9,4 +9,6 @@ export const useState = React.useState;
 export const __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED =
 	React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
-export default React.default;
+export const version = React.version;
+export const createElement = React.createElement;
+export const isValidElement = React.isValidElement;

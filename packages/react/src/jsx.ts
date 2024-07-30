@@ -43,21 +43,21 @@ export const createElement = (
 	const props: Props = {};
 
 	for (const prop in config) {
-		const value = config[prop];
-		if (Object.prototype.hasOwnProperty.call(config, prop)) {
-			if (prop === 'key') {
-				if (value) {
-					key = '' + value;
-				}
-				continue;
+		const val = config[prop];
+		if (prop === 'key') {
+			if (val !== undefined) {
+				key = '' + val;
 			}
-			if (prop === 'ref') {
-				if (value) {
-					ref = value;
-				}
-				continue;
+			continue;
+		}
+		if (prop === 'ref') {
+			if (val !== undefined) {
+				ref = val;
 			}
-			props[prop] = value;
+			continue;
+		}
+		if ({}.hasOwnProperty.call(config, prop)) {
+			props[prop] = val;
 		}
 	}
 
@@ -75,29 +75,29 @@ export const createElement = (
 
 export const jsx = (type: ElementType, config: any, maybeKey: any) => {
 	let key: Key = null;
-	let ref: Ref = null;
 	const props: Props = {};
+	let ref: Ref = null;
 
-	if (maybeKey) {
+	if (maybeKey !== undefined) {
 		key = '' + maybeKey;
 	}
 
 	for (const prop in config) {
-		if (Object.prototype.hasOwnProperty.call(config, prop)) {
-			const value = config[prop];
-			if (prop === 'key') {
-				if (value) {
-					key = '' + value;
-				}
-				continue;
+		const val = config[prop];
+		if (prop === 'key') {
+			if (val !== undefined) {
+				key = '' + val;
 			}
-			if (prop === 'ref') {
-				if (value) {
-					ref = value;
-				}
-				continue;
+			continue;
+		}
+		if (prop === 'ref') {
+			if (val !== undefined) {
+				ref = val;
 			}
-			props[prop] = value;
+			continue;
+		}
+		if ({}.hasOwnProperty.call(config, prop)) {
+			props[prop] = val;
 		}
 	}
 
