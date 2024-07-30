@@ -6,7 +6,7 @@ With the following characteristics:
 
 👬 The implementation closest to the React source code
 
-💪 Fully functional, the current can be run through the official number of test cases: 1
+💪 Fully functional, the current can be run through the official number of test cases: 20
 
 🚶 Iterative steps divided by Git tags, documenting the implementation of each feature from scratch
 
