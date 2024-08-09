@@ -5,13 +5,7 @@ import { ReactElementType } from 'shared/ReactTypes';
 
 function App() {
 	const [num, setNum] = useState(199);
-	// @ts-ignore
-	window.setNum = setNum;
-	return (
-		<div>
-			<h1>{num}</h1>
-		</div>
-	);
+	return <div onClickCapture={() => setNum(num + 1)}>{num}</div>;
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
