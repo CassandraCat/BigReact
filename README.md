@@ -31,47 +31,60 @@ With the following characteristics:
 
 ### Framework Requirements
 
-| Type       | Content                          | Completion |                    Version Implemented                     |
-| ---------- | -------------------------------- | :--------: | :--------------------------------------------------------: |
-| React      | JSX transformation               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| React      | React.isValidElement             |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| ReactDOM   | DOM insertion in browser         |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
-| ReactDOM   | DOM movement in browser          |    ⬜️     |                                                            |
-| ReactDOM   | DOM attribute changes in browser |    ⬜️     |                                                            |
-| ReactDOM   | DOM deletion in browser          |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| ReactDOM   | ReactTestUtils                   |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
-| ReactNoop  | ReactNoop Renderer               |    ⬜️     |                                                            |
-| Reconciler | Fiber architecture               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Event model                      |    ⬜️     |                                                            |
-| Reconciler | Lane model                       |    ⬜️     |                                                            |
-| Reconciler | Basic update mechanism           |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Priority-based update mechanism  |    ⬜️     |                                                            |
-| Reconciler | Single-node reconcile process    |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | Multi-node reconcile process     |    ⬜️     |                                                            |
-| Reconciler | Node deletion reconcile process  |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | Support for HostText type        |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
-| Reconciler | Support for HostComponent type   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Support for HostRoot type        |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Support for FunctionComponent    |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| React      | Hooks architecture (mount)       |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| React      | Hooks architecture (update)      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | useState implementation          |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| Reconciler | useEffect implementation         |    ⬜️     |                                                            |
-| Reconciler | useRef implementation            |    ⬜️     |                                                            |
-| Reconciler | Synchronous scheduling process   |    ⬜️     |                                                            |
-| Reconciler | Asynchronous scheduling process  |    ⬜️     |                                                            |
+| Type       | Content                              | Completion |                    Version Implemented                     |
+| ---------- | ------------------------------------ | :--------: | :--------------------------------------------------------: |
+| React      | JSX transformation                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| React      | React.isValidElement                 |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| ReactDOM   | DOM insertion in browser             |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| ReactDOM   | DOM movement in browser              |    ⬜️     |                                                            |
+| ReactDOM   | DOM attribute changes in browser     |    ⬜️     |                                                            |
+| ReactDOM   | DOM deletion in browser              |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| ReactDOM   | ReactTestUtils                       |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
+| ReactNoop  | ReactNoop Renderer                   |    ⬜️     |                                                            |
+| Reconciler | Fiber architecture                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Event model                          |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
+| Reconciler | onClick event support                |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
+| Reconciler | Input element onChange event support |    ⬜️     |                                                            |
+| Reconciler | Lane model                           |    ⬜️     |                                                            |
+| Reconciler | Basic update mechanism               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Priority-based update mechanism      |    ⬜️     |                                                            |
+| Reconciler | Single-node reconcile process        |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| Reconciler | Multi-node reconcile process         |    ⬜️     |                                                            |
+| Reconciler | Node deletion reconcile process      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| Reconciler | Support for HostText type            |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| Reconciler | Support for HostComponent type       |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for HostRoot type            |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for FunctionComponent        |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| React      | Hooks architecture (mount)           |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| React      | Hooks architecture (update)          |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| Reconciler | useState implementation              |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| Reconciler | useEffect implementation             |    ⬜️     |                                                            |
+| Reconciler | useRef implementation                |    ⬜️     |                                                            |
+| Reconciler | Synchronous scheduling process       |    ⬜️     |                                                            |
+| Reconciler | Asynchronous scheduling process      |    ⬜️     |                                                            |
 
 ## Debugging
 
-There are two main debugging methods:
+Here are three debugging methods:
 
-1. Running test cases
+1. Real-time Debugging
+   Running yarn demo `<directory-name>` will execute the demo project in the demos directory corresponding to the specified directory name.
 
-   Run `React` official test cases (not yet implemented, requires `ReactNoop` renderer to be implemented first)
+   Benefits:
+   The console will print information about the execution of major steps, allowing you to visually track the execution flow.
+   Hot updates are available (including updates to both demo code and source code).
 
-2. yarn link
+2. Using yarn link
+   Set up a React test project using CRA or Vite. In this project, execute yarn build to bundle react and react-dom. Then, use yarn link to replace the react and react-dom dependencies in the test project with the bundled versions.
 
-   Start a `React` test project with `CRA` or `Vite`, then build `react` and `react-dom` in this project by executing `yarn build`, and replace the project's `react` and `react-dom` dependencies with the built versions using `yarn link`.
+   Benefits:
+   This method is the closest to actual usage scenarios of React in a project.
+
+3. Running Official React Test Cases
+   Execute yarn test to run the official test cases, which use the react and react-dom versions bundled by executing yarn build.
+
+   Benefits:
+   This allows you to observe framework implementation details and edge cases from the perspective of official test cases.
 
 ## Changelog
 
@@ -117,3 +130,10 @@ Implement single-node update, including the following functionalities:
 - Single Node Reconciliation Process: This includes reconciliation for HostComponent and HostText.
 - Node Deletion Reconciliation Process: Prepare for subsequent ref and useEffect features with a thorough implementation.
 - Hooks Architecture Update Implementation.
+
+### v1.5
+
+Implement an event system with the following features:
+
+- Event Model
+- Support for onClick events (as well as onClickCapture events)
