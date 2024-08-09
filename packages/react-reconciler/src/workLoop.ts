@@ -52,7 +52,6 @@ function renderRoot(root: FiberRootNode) {
 	const finishedWork = root.current.alternate;
 	root.finishedWork = finishedWork;
 
-	// TODO Commit
 	commitRoot(root);
 }
 
@@ -92,6 +91,8 @@ function workLoop() {
 
 function performUnitOfWork(fiber: FiberNode) {
 	const next = beginWork(fiber);
+	fiber.memorizedProps = fiber.pendingProps;
+
 	if (!next) {
 		completeUnitOfWork(fiber);
 	} else {

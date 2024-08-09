@@ -1,6 +1,6 @@
 import { Container } from 'hostConfig';
 import { FiberNode } from './fiber';
-import { NoFlags } from './fiberFlags';
+import { NoFlags, Update } from './fiberFlags';
 import {
 	appendInitialChild,
 	createInstance,
@@ -13,6 +13,10 @@ import {
 	HostText
 } from './workTags';
 
+function markUpdate(fiber: FiberNode) {
+	fiber.flags |= Update;
+}
+
 export const completeWork = (wip: FiberNode) => {
 	const newProps = wip.pendingProps;
 	const current = wip.alternate;
@@ -21,6 +25,7 @@ export const completeWork = (wip: FiberNode) => {
 		case HostComponent:
 			if (current && wip.stateNode) {
 				// update
+				markUpdate(wip);
 			} else {
 				if (!newProps) {
 					throw new Error('No props');
@@ -34,6 +39,11 @@ export const completeWork = (wip: FiberNode) => {
 		case HostText:
 			if (current && wip.stateNode) {
 				// update
+				const oldText = current.memorizedProps?.content;
+				const newText = newProps.content;
+				if (oldText !== newText) {
+					markUpdate(wip);
+				}
 			} else {
 				if (!newProps) {
 					throw new Error('No props');

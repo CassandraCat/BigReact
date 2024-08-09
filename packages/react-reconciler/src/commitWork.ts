@@ -1,7 +1,23 @@
-import { appendChildToContainer, Container } from 'hostConfig';
+import {
+	appendChildToContainer,
+	Container,
+	removeChild,
+	updateTextInstance
+} from 'hostConfig';
 import { FiberNode, FiberRootNode } from './fiber';
-import { MutationMask, NoFlags, Placement } from './fiberFlags';
-import { HostComponent, HostRoot, HostText } from './workTags';
+import {
+	ChildDeletion,
+	MutationMask,
+	NoFlags,
+	Placement,
+	Update
+} from './fiberFlags';
+import {
+	FunctionComponent,
+	HostComponent,
+	HostRoot,
+	HostText
+} from './workTags';
 
 let nextEffect: FiberNode | null = null;
 
@@ -33,11 +49,110 @@ export const commitMutationEffects = (finishedWork: FiberNode) => {
 
 const commitMutationEffectsOnFiber = (finishedWork: FiberNode) => {
 	const flags = finishedWork.flags;
+	// Placement
 	if ((flags & Placement) !== NoFlags) {
 		commitPlacement(finishedWork);
 		finishedWork.flags &= ~Placement;
 	}
+
+	// Update
+	if ((flags & Update) !== NoFlags) {
+		commitUpdate(finishedWork);
+		finishedWork.flags &= ~Update;
+	}
+	// ChildDeletion
+	if ((flags & ChildDeletion) !== NoFlags) {
+		const deletions = finishedWork.deletions;
+		if (deletions !== null) {
+			deletions.forEach((childrenToDelete) => {
+				commitDeletion(childrenToDelete);
+			});
+		}
+	}
 };
+
+function commitDeletion(childrenToDelete: FiberNode) {
+	let rootHostNode: FiberNode | null = null;
+
+	commitNestedComponent(childrenToDelete, (unmountFiber) => {
+		switch (unmountFiber.tag) {
+			case HostComponent:
+				if (rootHostNode === null) {
+					rootHostNode = unmountFiber;
+				}
+				// TODO unbind ref
+				return;
+			case HostText:
+				if (rootHostNode === null) {
+					rootHostNode = unmountFiber;
+				}
+				return;
+			case FunctionComponent:
+				// TODO useEffect
+				// TODO unmount
+				// TODO unbind ref
+				return;
+			default:
+				if (__DEV__) {
+					console.warn('Unhandled unmount type', unmountFiber);
+				}
+		}
+	});
+
+	if (rootHostNode !== null) {
+		const hostParent = getHostParent(childrenToDelete);
+		if (hostParent !== null) {
+			removeChild((rootHostNode as FiberNode).stateNode, hostParent);
+		}
+	}
+
+	childrenToDelete.return = null;
+	childrenToDelete.child = null;
+}
+
+function commitNestedComponent(
+	root: FiberNode,
+	onCommitUnmount: (fiber: FiberNode) => void
+) {
+	let node = root;
+	while (true) {
+		onCommitUnmount(node);
+
+		if (node.child !== null) {
+			node.child.return = node;
+			node = node.child;
+			continue;
+		}
+
+		if (node === root) {
+			return;
+		}
+
+		while (node.sibling === null) {
+			if (node.return === null || node.return === root) {
+				return;
+			}
+			node = node.return;
+		}
+
+		node.sibling.return = node.return;
+		node = node.sibling;
+	}
+}
+
+function commitUpdate(finishedWork: FiberNode) {
+	switch (finishedWork.tag) {
+		case HostText:
+			// updateTextInstance
+			const text = finishedWork.memorizedProps.content;
+			return updateTextInstance(finishedWork.stateNode, text);
+		default:
+			if (__DEV__) {
+				console.warn('Unimplemented Update type', finishedWork);
+			}
+			break;
+	}
+}
 
 const commitPlacement = (finishedWork: FiberNode) => {
 	if (__DEV__) {

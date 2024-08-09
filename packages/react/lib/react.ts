@@ -12,3 +12,5 @@ export const __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED =
 export const version = React.version;
 export const createElement = React.createElement;
 export const isValidElement = React.isValidElement;
+
+export default React;

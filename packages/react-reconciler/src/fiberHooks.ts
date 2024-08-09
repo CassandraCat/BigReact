@@ -5,6 +5,7 @@ import {
 	createUpdate,
 	createUpdateQueue,
 	enqueueUpdate,
+	processUpdateQueue,
 	UpdateQueue
 } from './updateQueue';
 import { Action } from 'shared/ReactTypes';
@@ -12,6 +13,7 @@ import { scheduleUpdateOnFiber } from './workLoop';
 
 let currentlyRenderingFiber: FiberNode | null = null;
 let workInProgressHook: Hook | null = null;
+let currentHook: Hook | null = null;
 
 const { currentDispatcher } = internals;
 
@@ -29,6 +31,7 @@ export function renderWithHooks(wip: FiberNode) {
 
 	if (current) {
 		// update
+		currentDispatcher.current = HooksDispatcherOnUpdate;
 	} else {
 		// mount
 		currentDispatcher.current = HooksDispatcherOnMount;
@@ -39,12 +42,74 @@ export function renderWithHooks(wip: FiberNode) {
 	const children = Component(props);
 
 	currentlyRenderingFiber = null;
+	workInProgressHook = null;
+	currentHook = null;
 	return children;
 }
 
 const HooksDispatcherOnMount: Dispatcher = {
 	useState: mountState
 };
+
+const HooksDispatcherOnUpdate: Dispatcher = {
+	useState: updateState
+};
+
+function updateState<State>(): [State, Dispatch<State>] {
+	const hook: Hook = updateWorkInProgressHook();
+	const queue = hook.updateQueue as UpdateQueue<State>;
+	const pending = queue.shared.pending;
+
+	if (pending !== null) {
+		const { memorizedState } = processUpdateQueue(hook.memorizedState, pending);
+		hook.memorizedState = memorizedState;
+		queue.shared.pending = null;
+	}
+
+	return [hook.memorizedState, queue.dispatch as Dispatch<State>];
+}
+
+function updateWorkInProgressHook(): Hook {
+	let nextCurrentHook: Hook | null;
+
+	if (currentHook === null) {
+		const current = currentlyRenderingFiber?.alternate as FiberNode;
+		if (current !== null) {
+			nextCurrentHook = current.memorizedState as Hook;
+		} else {
+			nextCurrentHook = null;
+		}
+	} else {
+		nextCurrentHook = currentHook.next;
+	}
+
+	if (nextCurrentHook === null) {
+		throw new Error('Invalid hook count in fiber');
+	}
+
+	currentHook = nextCurrentHook;
+
+	const newHook: Hook = {
+		memorizedState: currentHook.memorizedState,
+		updateQueue: currentHook.updateQueue,
+		next: null
+	};
+	if (workInProgressHook === null) {
+		// first hook in mount
+		if (currentlyRenderingFiber === null) {
+			throw new Error('please call hooks in function component');
+		} else {
+			workInProgressHook = newHook;
+			currentlyRenderingFiber.memorizedState = workInProgressHook;
+		}
+	} else {
+		// remaining hooks in mount
+		workInProgressHook.next = newHook;
+		workInProgressHook = newHook;
+	}
+
+	return workInProgressHook;
+}
 
 function mountState<State>(
 	initialState: State | (() => State)
@@ -62,8 +127,11 @@ function mountState<State>(
 	hook.updateQueue = queue;
 	hook.memorizedState = memorizedState;
 
-	// @ts-ignore
-	const dispatch = dispatchSetState.bind(null, currentlyRenderingFiber, queue);
+	const dispatch = dispatchSetState.bind(
+		null,
+		currentlyRenderingFiber as FiberNode,
+		queue as UpdateQueue<unknown>
+	);
 	queue.dispatch = dispatch;
 
 	return [memorizedState, dispatch];

@@ -5,7 +5,8 @@ import { ReactElementType } from 'shared/ReactTypes';
 
 function App() {
 	const [num, setNum] = useState(199);
-	console.log(setNum);
+	// @ts-ignore
+	window.setNum = setNum;
 	return (
 		<div>
 			<h1>{num}</h1>

@@ -1,15 +1,80 @@
+import { Props } from './../../shared/ReactTypes';
 import { REACT_ELEMENT_TYPE } from './../../shared/ReactSymbols';
 import { ReactElementType } from 'shared/ReactTypes';
-import { createFiberFromELement, FiberNode } from './fiber';
-import { Placement } from './fiberFlags';
+import {
+	createFiberFromELement,
+	createWorkInProgress,
+	FiberNode
+} from './fiber';
+import { ChildDeletion, Placement } from './fiberFlags';
 import { HostText } from './workTags';
+
+function useFiber(fiber: FiberNode, pendingProps: Props): FiberNode {
+	const clone = createWorkInProgress(fiber, pendingProps);
+	clone.index = 0;
+	clone.sibling = null;
+	return clone;
+}
+
 function ChildReconciler(shouldTrackEffects: boolean) {
+	function deleteChildren(returnFiber: FiberNode, childrenToDelete: FiberNode) {
+		if (!shouldTrackEffects) return;
+		const deletions = returnFiber.deletions;
+		if (deletions === null) {
+			returnFiber.deletions = [childrenToDelete];
+			returnFiber.flags |= ChildDeletion;
+		} else {
+			deletions.push(childrenToDelete);
+		}
+	}
+
+	function deleteRemainingChildren(
+		returnFiber: FiberNode,
+		currentFirstChild: FiberNode | null
+	) {
+		if (!shouldTrackEffects) {
+			return;
+		}
+		let childToDelete = currentFirstChild;
+		while (childToDelete !== null) {
+			deleteChildren(returnFiber, childToDelete);
+			childToDelete = childToDelete.sibling;
+		}
+	}
+
 	function reconcileSingleElement(
 		returnFiber: FiberNode,
 		currentFiber: FiberNode | null,
 		element: ReactElementType
 	) {
-		currentFiber;
+		const key = element.key;
+		while (currentFiber !== null) {
+			// update
+			if (currentFiber.key === key) {
+				// same key
+				if (element.$$typeof === REACT_ELEMENT_TYPE) {
+					if (currentFiber.type === element.type) {
+						// same type
+						const existing = useFiber(currentFiber, element.props);
+						existing.return = returnFiber;
+						deleteRemainingChildren(returnFiber, currentFiber.sibling);
+						return existing;
+					}
+
+					// different type
+					deleteRemainingChildren(returnFiber, currentFiber);
+					break;
+				} else {
+					if (__DEV__) {
+						console.error('Unknown child type', element);
+						break;
+					}
+				}
+			} else {
+				deleteChildren(returnFiber, currentFiber);
+				currentFiber = currentFiber.sibling;
+			}
+		}
 		const fiber = createFiberFromELement(element);
 		fiber.return = returnFiber;
 		return fiber;
@@ -20,7 +85,18 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		currentFiber: FiberNode | null,
 		content: string | number
 	) {
-		currentFiber;
+		while (currentFiber !== null) {
+			// update
+			if (currentFiber.tag === HostText) {
+				// same type
+				const existing = useFiber(currentFiber, { content });
+				existing.return = returnFiber;
+				deleteRemainingChildren(returnFiber, currentFiber.sibling);
+				return existing;
+			}
+			deleteChildren(returnFiber, currentFiber);
+			currentFiber = currentFiber.sibling;
+		}
 		const fiber = new FiberNode(HostText, null, { content });
 		fiber.return = returnFiber;
 		return fiber;
@@ -59,6 +135,11 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 			return placeSingleChild(
 				reconcileSingleTextNode(returnFiber, currentFiber, newChild)
 			);
+		}
+
+		if (currentFiber !== null) {
+			// boundaries
+			deleteChildren(returnFiber, currentFiber);
 		}
 
 		if (__DEV__) {
