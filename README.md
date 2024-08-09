@@ -38,7 +38,7 @@ With the following characteristics:
 | ReactDOM   | DOM insertion in browser         |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
 | ReactDOM   | DOM movement in browser          |    ⬜️     |                                                            |
 | ReactDOM   | DOM attribute changes in browser |    ⬜️     |                                                            |
-| ReactDOM   | DOM deletion in browser          |    ⬜️     |                                                            |
+| ReactDOM   | DOM deletion in browser          |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | ReactDOM   | ReactTestUtils                   |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
 | ReactNoop  | ReactNoop Renderer               |    ⬜️     |                                                            |
 | Reconciler | Fiber architecture               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
@@ -46,15 +46,15 @@ With the following characteristics:
 | Reconciler | Lane model                       |    ⬜️     |                                                            |
 | Reconciler | Basic update mechanism           |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Priority-based update mechanism  |    ⬜️     |                                                            |
-| Reconciler | Single-node reconcile process    |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Single-node reconcile process    |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | Reconciler | Multi-node reconcile process     |    ⬜️     |                                                            |
-| Reconciler | Node deletion reconcile process  |    ⬜️     |                                                            |
+| Reconciler | Node deletion reconcile process  |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | Reconciler | Support for HostText type        |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
 | Reconciler | Support for HostComponent type   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Support for HostRoot type        |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Support for FunctionComponent    |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
 | React      | Hooks architecture (mount)       |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| React      | Hooks architecture (update)      |    ⬜️     |                                                            |
+| React      | Hooks architecture (update)      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | Reconciler | useState implementation          |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
 | Reconciler | useEffect implementation         |    ⬜️     |                                                            |
 | Reconciler | useRef implementation            |    ⬜️     |                                                            |
@@ -71,7 +71,7 @@ There are two main debugging methods:
 
 2. yarn link
 
-   Start a `React` test project with `CRA` or `Vite`, then build `react` and `react-dom` in this project by executing `yarn run build`, and replace the project's `react` and `react-dom` dependencies with the built versions using `yarn link`.
+   Start a `React` test project with `CRA` or `Vite`, then build `react` and `react-dom` in this project by executing `yarn build`, and replace the project's `react` and `react-dom` dependencies with the built versions using `yarn link`.
 
 ## Changelog
 
@@ -108,3 +108,12 @@ Initialize the testing architecture with the following features:
 - Configure Babel
 - Use ReactTestUtils
 - Run the 20 official test cases related to ReactElement
+
+### v1.4
+
+Implement single-node update, including the following functionalities:
+
+- Browser Environment DOM Deletion: For example, when an `<h3>` element changes to a `<p>` element, it should involve deleting the `<h3>` and inserting the `<p>`.
+- Single Node Reconciliation Process: This includes reconciliation for HostComponent and HostText.
+- Node Deletion Reconciliation Process: Prepare for subsequent ref and useEffect features with a thorough implementation.
+- Hooks Architecture Update Implementation.
