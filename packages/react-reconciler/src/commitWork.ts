@@ -1,6 +1,8 @@
 import {
 	appendChildToContainer,
 	Container,
+	insertChildToContainer,
+	Instance,
 	removeChild,
 	updateTextInstance
 } from 'hostConfig';
@@ -161,28 +163,36 @@ const commitPlacement = (finishedWork: FiberNode) => {
 	// parent DOM
 	const hostParent = getHostParent(finishedWork);
 
+	// sibling DOM
+	const before = getHostSibling(finishedWork);
+
 	// finishedWork ~~ DOM append parent DOM
 	if (hostParent !== null) {
-		appendPlacementNodeIntoContainer(finishedWork, hostParent);
+		insertOrAppendPlacementNodeIntoContainer(finishedWork, hostParent, before);
 	}
 };
 
-const appendPlacementNodeIntoContainer = (
+const insertOrAppendPlacementNodeIntoContainer = (
 	finishedWork: FiberNode,
-	hostParent: Container
+	hostParent: Container,
+	before?: Instance | null
 ) => {
 	// fiber host
 	if (finishedWork.tag === HostComponent || finishedWork.tag === HostText) {
-		appendChildToContainer(hostParent, finishedWork.stateNode);
+		if (before) {
+			insertChildToContainer(finishedWork.stateNode, hostParent, before);
+		} else {
+			appendChildToContainer(hostParent, finishedWork.stateNode);
+		}
 		return;
 	}
 	const child = finishedWork.child;
 	if (child !== null) {
-		appendPlacementNodeIntoContainer(child, hostParent);
+		insertOrAppendPlacementNodeIntoContainer(child, hostParent);
 		let sibling = child.sibling;
 
 		while (sibling !== null) {
-			appendPlacementNodeIntoContainer(sibling, hostParent);
+			insertOrAppendPlacementNodeIntoContainer(sibling, hostParent);
 			sibling = sibling.sibling;
 		}
 	}
@@ -207,3 +217,41 @@ const getHostParent = (fiber: FiberNode): Container | null => {
 	}
 	return null;
 };
+
+function getHostSibling(fiber: FiberNode): Instance | null {
+	let node: FiberNode = fiber;
+
+	findHostSibling: while (true) {
+		while (node.sibling === null) {
+			const parent = node.return;
+			if (
+				parent === null ||
+				parent.tag === HostComponent ||
+				parent.tag === HostRoot
+			) {
+				return null;
+			}
+			node = parent;
+		}
+
+		node.sibling.return = node.return;
+		node = node.sibling;
+
+		while (node.tag !== HostComponent && node.tag !== HostText) {
+			if ((node.flags & Placement) !== NoFlags) {
+				continue findHostSibling;
+			}
+
+			if (node.child === null) {
+				continue findHostSibling;
+			}
+
+			node.child.return = node;
+			node = node.child;
+		}
+
+		if ((node.flags & Placement) === NoFlags) {
+			return node.stateNode;
+		}
+	}
+}

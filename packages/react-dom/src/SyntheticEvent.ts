@@ -4,7 +4,7 @@ export const elementPropsKey = '__props';
 
 const validEventTypes = ['click'];
 
-type EventListener = (event: Event) => void;
+type EventCallbacks = (event: Event) => void;
 
 interface SyntheticEvent extends Event {
 	__stopPropagation: boolean;
@@ -15,8 +15,8 @@ export interface DOMElement extends Element {
 }
 
 interface EventPaths {
-	capture: EventListener[];
-	bubble: EventListener[];
+	capture: EventCallbacks[];
+	bubble: EventCallbacks[];
 }
 
 export function updateFiberProps(domElement: DOMElement, props: Props): void {
@@ -68,7 +68,7 @@ function dispatchEvent(
 }
 
 function triggerEventFlow(
-	paths: EventListener[],
+	paths: EventCallbacks[],
 	syntheticEvent: SyntheticEvent
 ): void {
 	for (let i = 0; i < paths.length; i++) {

@@ -9,6 +9,8 @@ import {
 import { ChildDeletion, Placement } from './fiberFlags';
 import { HostText } from './workTags';
 
+type ExistingChildren = Map<string | number, FiberNode>;
+
 function useFiber(fiber: FiberNode, pendingProps: Props): FiberNode {
 	const clone = createWorkInProgress(fiber, pendingProps);
 	clone.index = 0;
@@ -17,14 +19,14 @@ function useFiber(fiber: FiberNode, pendingProps: Props): FiberNode {
 }
 
 function ChildReconciler(shouldTrackEffects: boolean) {
-	function deleteChildren(returnFiber: FiberNode, childrenToDelete: FiberNode) {
+	function deleteChild(returnFiber: FiberNode, childToDelete: FiberNode) {
 		if (!shouldTrackEffects) return;
 		const deletions = returnFiber.deletions;
 		if (deletions === null) {
-			returnFiber.deletions = [childrenToDelete];
+			returnFiber.deletions = [childToDelete];
 			returnFiber.flags |= ChildDeletion;
 		} else {
-			deletions.push(childrenToDelete);
+			deletions.push(childToDelete);
 		}
 	}
 
@@ -37,7 +39,7 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		}
 		let childToDelete = currentFirstChild;
 		while (childToDelete !== null) {
-			deleteChildren(returnFiber, childToDelete);
+			deleteChild(returnFiber, childToDelete);
 			childToDelete = childToDelete.sibling;
 		}
 	}
@@ -71,7 +73,7 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 					}
 				}
 			} else {
-				deleteChildren(returnFiber, currentFiber);
+				deleteChild(returnFiber, currentFiber);
 				currentFiber = currentFiber.sibling;
 			}
 		}
@@ -94,12 +96,121 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 				deleteRemainingChildren(returnFiber, currentFiber.sibling);
 				return existing;
 			}
-			deleteChildren(returnFiber, currentFiber);
+			deleteChild(returnFiber, currentFiber);
 			currentFiber = currentFiber.sibling;
 		}
 		const fiber = new FiberNode(HostText, null, { content });
 		fiber.return = returnFiber;
 		return fiber;
+	}
+
+	function reconcileChildrenArray(
+		returnFiber: FiberNode,
+		currentFirstChild: FiberNode | null,
+		newChildren: Array<any>
+	) {
+		let lastPlacedIndex: number = 0;
+		let lastNewFiber: FiberNode | null = null;
+		let firstNewFiber: FiberNode | null = null;
+
+		const existingChildren: ExistingChildren = new Map();
+		let current = currentFirstChild;
+
+		while (current !== null) {
+			const keyToUse = current.key === null ? current.index : current.key;
+			existingChildren.set(keyToUse, current);
+			current = current.sibling;
+		}
+
+		for (let i = 0; i < newChildren.length; i++) {
+			const after = newChildren[i];
+			const newFiber = updateFromMap(existingChildren, i, after);
+
+			if (newFiber === null) {
+				continue;
+			}
+
+			newFiber.index = i;
+			newFiber.return = returnFiber;
+
+			if (lastNewFiber === null) {
+				firstNewFiber = newFiber;
+				lastNewFiber = newFiber;
+			} else {
+				lastNewFiber.sibling = newFiber;
+				lastNewFiber = lastNewFiber.sibling;
+			}
+
+			if (!shouldTrackEffects) {
+				continue;
+			}
+
+			const current = newFiber.alternate;
+			if (current !== null) {
+				const oldIndex = current.index;
+				if (oldIndex < lastPlacedIndex) {
+					// move
+					newFiber.flags |= Placement;
+					continue;
+				} else {
+					// not move
+					lastPlacedIndex = oldIndex;
+				}
+			} else {
+				newFiber.flags |= Placement;
+			}
+		}
+
+		existingChildren.forEach((fiber) => {
+			deleteChild(returnFiber, fiber);
+		});
+		return firstNewFiber;
+	}
+
+	function updateFromMap(
+		existingChildren: ExistingChildren,
+		index: number,
+		element: any
+	) {
+		const keyToUse = element.key === null ? index : element.key;
+		const before = existingChildren.get(keyToUse);
+
+		// ReactElement
+		if (typeof element === 'object' && element !== null) {
+			switch (element.$$typeof) {
+				case REACT_ELEMENT_TYPE:
+					if (before) {
+						if (before.type === element.type) {
+							existingChildren.delete(keyToUse);
+							return useFiber(before, element.props);
+						}
+					}
+					return createFiberFromELement(element);
+				default:
+					if (__DEV__) {
+						console.error('Unknown child type', element);
+					}
+					break;
+			}
+
+			// TODO handle array of children
+			if (Array.isArray(element) && __DEV__) {
+				console.warn('Array of children not supported');
+			}
+		}
+
+		// HostText
+		if (typeof element === 'string' || typeof element === 'number') {
+			if (before) {
+				if (before.tag === HostText) {
+					existingChildren.delete(keyToUse);
+					return useFiber(before, { content: element + '' });
+				}
+			}
+			return new FiberNode(HostText, { content: element + '' }, null);
+		}
+
+		return null;
 	}
 
 	function placeSingleChild(fiber: FiberNode) {
@@ -114,6 +225,11 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		currentFiber: FiberNode | null,
 		newChild?: ReactElementType
 	) {
+		// TODO handle array of children
+		if (Array.isArray(newChild)) {
+			return reconcileChildrenArray(returnFiber, currentFiber, newChild);
+		}
+
 		if (typeof newChild === 'object' && newChild !== null) {
 			switch (newChild.$$typeof) {
 				case REACT_ELEMENT_TYPE:
@@ -128,8 +244,6 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 			}
 		}
 
-		// TODO handle array of children
-
 		// HostText
 		if (typeof newChild === 'string' || typeof newChild === 'number') {
 			return placeSingleChild(
@@ -138,8 +252,8 @@ function ChildReconciler(shouldTrackEffects: boolean) {
 		}
 
 		if (currentFiber !== null) {
-			// boundaries
-			deleteChildren(returnFiber, currentFiber);
+			// boEndaries
+			deleteChild(returnFiber, currentFiber);
 		}
 
 		if (__DEV__) {
