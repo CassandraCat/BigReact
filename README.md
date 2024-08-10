@@ -36,7 +36,7 @@ With the following characteristics:
 | React      | JSX transformation                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | React      | React.isValidElement                 |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | ReactDOM   | DOM insertion in browser             |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
-| ReactDOM   | DOM movement in browser              |    ⬜️     |                                                            |
+| ReactDOM   | DOM movement in browser              |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
 | ReactDOM   | DOM attribute changes in browser     |    ⬜️     |                                                            |
 | ReactDOM   | DOM deletion in browser              |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | ReactDOM   | ReactTestUtils                       |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
@@ -48,8 +48,9 @@ With the following characteristics:
 | Reconciler | Lane model                           |    ⬜️     |                                                            |
 | Reconciler | Basic update mechanism               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Priority-based update mechanism      |    ⬜️     |                                                            |
+| Reconciler | Multi-node mount process             |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
 | Reconciler | Single-node reconcile process        |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | Multi-node reconcile process         |    ⬜️     |                                                            |
+| Reconciler | Multi-node reconcile process         |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
 | Reconciler | Node deletion reconcile process      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | Reconciler | Support for HostText type            |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
 | Reconciler | Support for HostComponent type       |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
@@ -137,3 +138,12 @@ Implement an event system with the following features:
 
 - Event Model
 - Support for onClick events (as well as onClickCapture events)
+
+### v1.6
+
+Implemented the multi-node reconcile process (commonly known as the Diff algorithm), including the following features:
+
+- Fixed a bug where onClick callbacks did not update during updates
+- Insertion process for multiple nodes during mounting
+- Reconciliation process for multiple nodes during insertion
+- DOM movement in the browser environment
