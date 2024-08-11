@@ -6,8 +6,8 @@
 		"react",
 		"reconciler"
 	],
-	"author": "CrazyCatZhang <crazycatzhang@outlook.com>",
-	"homepage": "https://github.com/CrazyCatZhang/BigReact#readme",
+	"author": "CassandraCat <CassandraCat@outlook.com>",
+	"homepage": "https://github.com/CassandraCat/BigReact#readme",
 	"license": "ISC",
 	"main": "lib/react-reconciler.ts",
 	"directories": {
@@ -19,7 +19,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CrazyCatZhang/BigReact.git"
+		"url": "git+https://github.com/CassandraCat/BigReact.git"
 	},
 	"scripts": {
 		"lint": "scripty"
@@ -28,7 +28,7 @@
 		"path": "../../scripts/packages"
 	},
 	"bugs": {
-		"url": "https://github.com/CrazyCatZhang/BigReact/issues"
+		"url": "https://github.com/CassandraCat/BigReact/issues"
 	},
 	"dependencies": {
 		"shared": "^1.0.0"
