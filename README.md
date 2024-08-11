@@ -61,7 +61,7 @@ With the following characteristics:
 | Reconciler | Support for FunctionComponent                        |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
 | Reconciler | useState implementation                              |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
 | Reconciler | Legacy scheduling process (including batchedUpdates) |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
-| Reconciler | useEffect implementation                             |    ⬜️     |                                                            |
+| Reconciler | useEffect implementation                             |     ✅     | [v2.1](https://github.com/CassandraCat/BigReact/tree/v2.1) |
 | Reconciler | useRef implementation                                |    ⬜️     |                                                            |
 | Reconciler | Synchronous scheduling process                       |    ⬜️     |                                                            |
 | Reconciler | Asynchronous scheduling process                      |    ⬜️     |                                                            |
@@ -166,3 +166,9 @@ Implemented the basic Lane model with support for scheduling synchronous updates
 - Prioritized Update mechanism
 - Legacy scheduling process (including batchedUpdates)
 - Fixed bugs related to unsupported number type nodes among multiple children
+
+### v2.1
+
+Implemented useEffect with asynchronous callback scheduling using the official scheduler module.
+
+- useEffect implementation
