@@ -48,6 +48,7 @@ With the following characteristics:
 | Reconciler | Lane model                           |    ⬜️     |                                                            |
 | Reconciler | Basic update mechanism               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Priority-based update mechanism      |    ⬜️     |                                                            |
+| Reconciler | Handle Fragment Node                 |     ✅     | [v1.7](https://github.com/CassandraCat/BigReact/tree/v1.7) |
 | Reconciler | Multi-node mount process             |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
 | Reconciler | Single-node reconcile process        |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | Reconciler | Multi-node reconcile process         |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
@@ -147,3 +148,11 @@ Implemented the multi-node reconcile process (commonly known as the Diff algorit
 - Insertion process for multiple nodes during mounting
 - Reconciliation process for multiple nodes during insertion
 - DOM movement in the browser environment
+
+### v1.7
+
+Implemented handling of Fragment and array nodes, including the following functionalities:
+
+- Correctly create or reuse Fragment Fiber nodes.
+- Handle array-form child nodes (e.g., { arr }).
+- During recursive deletion of subtrees, record the corresponding Host nodes to be deleted.
