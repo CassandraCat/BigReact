@@ -6,7 +6,7 @@ With the following characteristics:
 
 👬 The implementation closest to the React source code
 
-💪 Fully functional, the current can be run through the official number of test cases: 20
+💪 Fully functional, the current can be run through the official number of test cases: 25
 
 🚶 Iterative steps divided by Git tags, documenting the implementation of each feature from scratch
 
@@ -31,39 +31,40 @@ With the following characteristics:
 
 ### Framework Requirements
 
-| Type       | Content                              | Completion |                    Version Implemented                     |
-| ---------- | ------------------------------------ | :--------: | :--------------------------------------------------------: |
-| React      | JSX transformation                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| React      | React.isValidElement                 |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| ReactDOM   | DOM insertion in browser             |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
-| ReactDOM   | DOM movement in browser              |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
-| ReactDOM   | DOM attribute changes in browser     |    ⬜️     |                                                            |
-| ReactDOM   | DOM deletion in browser              |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| ReactDOM   | ReactTestUtils                       |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
-| ReactNoop  | ReactNoop Renderer                   |    ⬜️     |                                                            |
-| Reconciler | Fiber architecture                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Event model                          |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
-| Reconciler | onClick event support                |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
-| Reconciler | Input element onChange event support |    ⬜️     |                                                            |
-| Reconciler | Lane model                           |    ⬜️     |                                                            |
-| Reconciler | Basic update mechanism               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Priority-based update mechanism      |    ⬜️     |                                                            |
-| Reconciler | Handle Fragment Node                 |     ✅     | [v1.7](https://github.com/CassandraCat/BigReact/tree/v1.7) |
-| Reconciler | Multi-node mount process             |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
-| Reconciler | Single-node reconcile process        |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | Multi-node reconcile process         |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
-| Reconciler | Node deletion reconcile process      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | Support for HostText type            |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
-| Reconciler | Support for HostComponent type       |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Support for HostRoot type            |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
-| Reconciler | Support for FunctionComponent        |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| React      | Hooks architecture (mount)           |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| React      | Hooks architecture (update)          |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
-| Reconciler | useState implementation              |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
-| Reconciler | useEffect implementation             |    ⬜️     |                                                            |
-| Reconciler | useRef implementation                |    ⬜️     |                                                            |
-| Reconciler | Synchronous scheduling process       |    ⬜️     |                                                            |
-| Reconciler | Asynchronous scheduling process      |    ⬜️     |                                                            |
+| Type       | Content                                              | Completion |                    Version Implemented                     |
+| ---------- | ---------------------------------------------------- | :--------: | :--------------------------------------------------------: |
+| React      | JSX transformation                                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| React      | React.isValidElement                                 |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| React      | Hooks architecture (mount)                           |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| React      | Hooks architecture (update)                          |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| ReactDOM   | DOM insertion in browser                             |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| ReactDOM   | DOM movement in browser                              |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
+| ReactDOM   | DOM attribute changes in browser                     |    ⬜️     |                                                            |
+| ReactDOM   | DOM deletion in browser                              |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| ReactDOM   | ReactTestUtils                                       |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
+| ReactNoop  | ReactNoop Renderer                                   |    ⬜️     |                                                            |
+| Reconciler | Fiber architecture                                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Event model                                          |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
+| Reconciler | onClick event support                                |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
+| Reconciler | Input element onChange event support                 |    ⬜️     |                                                            |
+| Reconciler | Lane model                                           |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
+| Reconciler | Basic update mechanism                               |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Priority-based update mechanism                      |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
+| Reconciler | Handle Fragment Node                                 |     ✅     | [v1.7](https://github.com/CassandraCat/BigReact/tree/v1.7) |
+| Reconciler | Multi-node mount process                             |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
+| Reconciler | Single-node reconcile process                        |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| Reconciler | Multi-node reconcile process                         |     ✅     | [v1.6](https://github.com/CassandraCat/BigReact/tree/v1.6) |
+| Reconciler | Node deletion reconcile process                      |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
+| Reconciler | Support for HostText type                            |     ✅     | [v1.1](https://github.com/CassandraCat/BigReact/tree/v1.1) |
+| Reconciler | Support for HostComponent type                       |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for HostRoot type                            |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
+| Reconciler | Support for FunctionComponent                        |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| Reconciler | useState implementation                              |     ✅     | [v1.2](https://github.com/CassandraCat/BigReact/tree/v1.2) |
+| Reconciler | Legacy scheduling process (including batchedUpdates) |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
+| Reconciler | useEffect implementation                             |    ⬜️     |                                                            |
+| Reconciler | useRef implementation                                |    ⬜️     |                                                            |
+| Reconciler | Synchronous scheduling process                       |    ⬜️     |                                                            |
+| Reconciler | Asynchronous scheduling process                      |    ⬜️     |                                                            |
 
 ## Debugging
 
@@ -156,3 +157,12 @@ Implemented handling of Fragment and array nodes, including the following functi
 - Correctly create or reuse Fragment Fiber nodes.
 - Handle array-form child nodes (e.g., { arr }).
 - During recursive deletion of subtrees, record the corresponding Host nodes to be deleted.
+
+### v2.0
+
+Implemented the basic Lane model with support for scheduling synchronous updates and batchedUpdates, including:
+
+- Lane model
+- Prioritized Update mechanism
+- Legacy scheduling process (including batchedUpdates)
+- Fixed bugs related to unsupported number type nodes among multiple children
