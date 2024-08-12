@@ -42,7 +42,7 @@ With the following characteristics:
 | ReactDOM   | DOM attribute changes in browser                     |    ⬜️     |                                                            |
 | ReactDOM   | DOM deletion in browser                              |     ✅     | [v1.4](https://github.com/CassandraCat/BigReact/tree/v1.4) |
 | ReactDOM   | ReactTestUtils                                       |     ✅     | [v1.3](https://github.com/CassandraCat/BigReact/tree/v1.3) |
-| ReactNoop  | ReactNoop Renderer                                   |    ⬜️     |                                                            |
+| ReactNoop  | ReactNoop Renderer                                   |     ✅     | [v2.2](https://github.com/CassandraCat/BigReact/tree/v2.2) |
 | Reconciler | Fiber architecture                                   |     ✅     | [v1.0](https://github.com/CassandraCat/BigReact/tree/v1.0) |
 | Reconciler | Event model                                          |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
 | Reconciler | onClick event support                                |     ✅     | [v1.5](https://github.com/CassandraCat/BigReact/tree/v1.5) |
@@ -172,3 +172,14 @@ Implemented the basic Lane model with support for scheduling synchronous updates
 Implemented useEffect with asynchronous callback scheduling using the official scheduler module.
 
 - useEffect implementation
+
+### v2.2
+
+To implement React-Noop-Renderer, I made adjustments to React-Reconciler and Rollup configuration to make React-Reconciler more adaptable to different host environments. This includes:
+
+- Implemented React-Noop-Renderer to test Reconciler logic independently of ReactDOM.
+- Modified Rollup configuration to better integrate React-Reconciler with various host environments.
+- Integrated internal React packages jest-react and react-test-renderer, alongside custom React-Noop-Renderer, to test React cases under concurrent scenarios.
+- Passed the useEffect call order case.
+- Fixed minor bugs in the Diff algorithm discovered during the process.
+- Imported Scheduler, jest-react, and react-test-renderer as NPM packages.
