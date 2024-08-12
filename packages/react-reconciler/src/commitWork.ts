@@ -25,6 +25,7 @@ import {
 } from './workTags';
 import { Effect, FunctionComponentUpdateQueue } from './fiberHooks';
 import { HookHasEffect } from './hookEffectTags';
+import { updateFiberProps } from 'react-dom/src/SyntheticEvent';
 
 let nextEffect: FiberNode | null = null;
 
@@ -251,6 +252,11 @@ function commitUpdate(finishedWork: FiberNode) {
 			// updateTextInstance
 			const text = finishedWork.memorizedProps.content;
 			return updateTextInstance(finishedWork.stateNode, text);
+		case HostComponent:
+			return updateFiberProps(
+				finishedWork.stateNode,
+				finishedWork.memorizedProps
+			);
 		default:
 			if (__DEV__) {
 				console.warn('Unimplemented Update type', finishedWork);

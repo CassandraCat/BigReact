@@ -1,0 +1,37 @@
+{
+	"name": "react-noop-renderer",
+	"version": "1.0.0",
+	"description": "A no-operation (noop) environment for testing",
+	"author": "CassandraCat <CassandraCat@proton.me>",
+	"homepage": "https://github.com/CassandraCat/BigReact#readme",
+	"license": "ISC",
+	"main": "lib/react-noop-renderer.js",
+	"module": "index.ts",
+	"directories": {
+		"lib": "lib",
+		"test": "__tests__"
+	},
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CassandraCat/BigReact.git"
+	},
+	"scripts": {
+		"lint": "scripty"
+	},
+	"scripty": {
+		"path": "../../scripts/packages"
+	},
+	"bugs": {
+		"url": "https://github.com/CassandraCat/BigReact/issues"
+	},
+	"dependencies": {
+		"shared": "^1.0.0",
+		"react-reconciler": "^1.0.0"
+	},
+	"peerDependencies": {
+		"react": "^1.0.0"
+	}
+}

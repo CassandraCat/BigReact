@@ -1,4 +1,4 @@
-import { Container } from 'hostConfig';
+import { Container, Instance } from 'hostConfig';
 import { FiberNode } from './fiber';
 import { NoFlags, Update } from './fiberFlags';
 import {
@@ -27,7 +27,7 @@ export const completeWork = (wip: FiberNode) => {
 		case HostComponent:
 			if (current && wip.stateNode) {
 				// update
-				updateFiberProps(wip.stateNode, newProps);
+				markUpdate(wip);
 			} else {
 				if (!newProps) {
 					throw new Error('No props');
@@ -68,7 +68,7 @@ export const completeWork = (wip: FiberNode) => {
 	return wip;
 };
 
-function appendAllChildren(parent: Container, wip: FiberNode) {
+function appendAllChildren(parent: Container | Instance, wip: FiberNode) {
 	let node = wip.child;
 	while (node !== null) {
 		if (node.tag === HostComponent || node.tag === HostText) {
