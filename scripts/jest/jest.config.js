@@ -4,7 +4,7 @@ module.exports = {
 	...defaults,
 	rootDir: process.cwd(),
 	modulePathIgnorePatterns: ['<rootDir>/.history'],
-	moduleDirectories: [...defaults.moduleDirectories, 'dist/node_modules'],
+	moduleDirectories: ['dist/node_modules', ...defaults.moduleDirectories],
 	testEnvironment: 'jsdom',
 	moduleNameMapper: {
 		'^scheduler$': '<rootDir>/node_modules/scheduler/unstable_mock.js'
@@ -13,5 +13,9 @@ module.exports = {
 		enableGlobally: true,
 		legacyFakeTimers: true
 	},
-	setupFilesAfterEnv: ['./scripts/jest/setupJest.js']
+	setupFilesAfterEnv: ['./scripts/jest/setupJest.js'],
+	transform: {
+		'^.+\\.(ts|tsx)$': 'ts-jest',
+		'^.+\\.(js|jsx)$': 'babel-jest'
+	}
 };
