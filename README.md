@@ -63,8 +63,8 @@ With the following characteristics:
 | Reconciler | Legacy scheduling process (including batchedUpdates) |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
 | Reconciler | useEffect implementation                             |     ✅     | [v2.1](https://github.com/CassandraCat/BigReact/tree/v2.1) |
 | Reconciler | useRef implementation                                |    ⬜️     |                                                            |
-| Reconciler | Synchronous scheduling process                       |    ⬜️     |                                                            |
-| Reconciler | Asynchronous scheduling process                      |    ⬜️     |                                                            |
+| Reconciler | Synchronous scheduling process                       |     ✅     | [v2.0](https://github.com/CassandraCat/BigReact/tree/v2.0) |
+| Reconciler | Concurrent scheduling process                        |     ✅     | [v2.3](https://github.com/CassandraCat/BigReact/tree/v2.3) |
 
 ## Debugging
 
@@ -183,3 +183,10 @@ To implement React-Noop-Renderer, I made adjustments to React-Reconciler and Rol
 - Passed the useEffect call order case.
 - Fixed minor bugs in the Diff algorithm discovered during the process.
 - Imported Scheduler, jest-react, and react-test-renderer as NPM packages.
+
+### v2.3
+
+To implement concurrent updates, you can modify the `eventTypeToEventPriority` method in `packages/react-dom/src/SyntheticEvent.ts`, specifically changing the priority for the click event. This will allow you to observe the differences in how synchronous updates (SyncLane) and updates with other priorities handle click events and whether they trigger time slicing. This includes the following functionalities:
+
+- Concurrent Scheduling Flow
+- State Calculation for Concurrent Updates
