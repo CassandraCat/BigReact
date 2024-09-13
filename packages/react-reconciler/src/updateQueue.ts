@@ -96,7 +96,7 @@ export const processUpdateQueue = <State>(
 				const action = pending.action;
 				if (action instanceof Function) {
 					// baseState 1 update (x) => 4x -> memoizedState 4
-					newState = action(baseState);
+					newState = action(newState);
 				} else {
 					// baseState 1 update 2 -> memoizedState 2
 					newState = action;

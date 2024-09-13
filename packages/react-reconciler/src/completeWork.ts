@@ -13,7 +13,6 @@ import {
 	HostRoot,
 	HostText
 } from './workTags';
-import { updateFiberProps } from 'react-dom/src/SyntheticEvent';
 
 function markUpdate(fiber: FiberNode) {
 	fiber.flags |= Update;

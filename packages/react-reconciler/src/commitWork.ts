@@ -185,7 +185,6 @@ function commitDeletion(childrenToDelete: FiberNode, root: FiberRootNode) {
 		switch (unmountFiber.tag) {
 			case HostComponent:
 				recordHostChildrenToDelete(rootChildrenToDelete, unmountFiber);
-
 				// TODO unbind ref
 				return;
 			case HostText:

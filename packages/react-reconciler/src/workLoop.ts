@@ -204,9 +204,9 @@ function renderRoot(
 }
 
 function performSyncWorkOnRoot(root: FiberRootNode, lane: Lane) {
-	// const nextLane = getHighestPriorityLane(root.pendingLanes);
+	const nextLane = getHighestPriorityLane(root.pendingLanes);
 
-	if (lane !== SyncLane) {
+	if (nextLane !== SyncLane) {
 		// Lower Priority
 		// NoLane
 		ensureRootIsScheduled(root);
